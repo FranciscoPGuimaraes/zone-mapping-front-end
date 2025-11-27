@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import MapView from "./components/map/MapView";
-import SideBar from "./components/sidebar/SideBar";
+import SideBar from "./components/sideBar/SideBar";
 import ZoneModal from "./components/zoneModal/zoneModal";
 import './App.css'
 
