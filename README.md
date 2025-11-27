@@ -1,90 +1,120 @@
-# 🗺️ Zone Mapping App --- Frontend
+# 🗺️ Zone Mapping App --- Full Stack (Frontend + Backend)
 
-Aplicação Full Stack para **criação, visualização e gerenciamento de
-zonas geográficas** no mapa, com armazenamento em **GeoJSON** e controle
-de exibição via interface.
+Plataforma para **criação, visualização e gerenciamento de zonas
+geográficas no mapa**, com armazenamento de geometria em **GeoJSON
+(Polygon/MultiPolygon)** e operações **CRUD** via API.
 
 ------------------------------------------------------------------------
 
 ## ✨ Funcionalidades
 
--   Renderização de mapa interativo
--   Desenho de zonas (polígonos) diretamente no mapa
--   Salvamento das zonas no backend via API
+-   Criação de zonas desenhando diretamente no mapa
 -   Armazenamento da geometria em **GeoJSON**
--   Listagem de zonas na sidebar com busca
--   Controle de visibilidade com checkboxes
--   Seleção de zonas e destaque visual
--   Sincronização entre **mapa** e **lista (sidebar)**
--   Operações CRUD via backend (NestJS)
+-   **CRUD completo** (Create, Read, Update, Delete) via backend
+-   Configuração via **variáveis de ambiente (.env)**
+-   Persistência relacional no banco de dados (**SQLite**)
+-   Interface modal para nome e tipo da zona
+-   Controle de visibilidade das zonas na UI
 
 ------------------------------------------------------------------------
 
-## 🧩 Estrutura do Projeto
+## 🧰 Stack Tecnológica
 
-    project-root/
-    ├── front-end/      → Interface construída em ReactJS
-    ├── back-end/       → API desenvolvida em NestJS (REST)
-    └── README.md      → Documentação do projeto
+### 🎨 Frontend
 
-------------------------------------------------------------------------
+-   **React (Vite)**
+-   Axios
+-   Leaflet + Leaflet‑Draw
+-   Context API para gerenciamento de estado
 
-## 🚀 Tecnologias Utilizadas
+### 🏗️ Backend
 
-### Frontend
-
--   ReactJS (JavaScript)
--   React Leaflet
--   Leaflet Geoman (para desenho e edição de polígonos)
--   Axios (para comunicação com a API)
+-   **NestJS**
+-   SQLite
+-   ORM com suporte JSON para GeoJSON (TypeORM)
+-   Swagger para documentação 
 
 ------------------------------------------------------------------------
 
-## 📡 API --- Modelo da entidade `Zone`
-
-A aplicação segue a estrutura:
+## 🧠 Modelo da entidade `Zone`
 
 ``` json
 {
   "id": 1,
   "name": "Zona Residencial Norte",
   "type": "Residencial",
-  "geometry": { "type": "Polygon", "coordinates": [...] }
+  "geometry": { "type": "Polygon", "coordinates": [...] },
+  "createdAt": "2025‑11‑27T17:40:00.000Z"
 }
 ```
 
 ------------------------------------------------------------------------
 
-## ▶️ Como Executar o Projeto
+## 🔐 Variáveis de Ambiente
 
-### Frontend
+
+Frontend (React + Vite), crie o `.env`:
+
+``` env
+VITE_API_URL=http://localhost:3000
+VITE_MAP_CENTER=[‑22.5, ‑45.5]
+VITE_MAP_ZOOM=13
+```
+
+> **Importante:** variáveis do frontend devem começar com `VITE_`.
+
+------------------------------------------------------------------------
+
+## ▶️ Executando a Aplicação Localmente
+
+### 📦 Instalar dependências
 
 ``` bash
-cd front-end
+npm install
+```
+
+### ▶️ Iniciar backend
+
+``` bash
+npm run start:dev
+```
+
+### ▶️ Iniciar frontend
+
+``` bash
+cd front_end
 npm install
 npm run dev
 ```
 
-------------------------------------------------------------------------
-
-## 🛠️ Configurações Importantes
-
--   O mapa usa **OpenStreetMap** como camada base
--   O plugin **Leaflet Geoman** habilita:
-    -   criação de polígonos
-    -   edição e remoção de camadas
-    -   retorno do resultado em GeoJSON
+Acesse no navegador: - **Frontend:** `http://localhost:5173` - **API:**
+`http://localhost:3000/zones`
 
 ------------------------------------------------------------------------
 
-## 📌 Gerenciamento de Estado (Context API)
+## 🌐 Acesso ao Projeto Online
 
-O frontend utiliza um **context provider (`ZonesContext`)** como fonte
-única de verdade para:
+-   **Aplicação:** `https://zone-mapping-front-end-jrqm.vercel.app/`
+-   **API:** `https://zone-mapping-back-end.onrender.com/`
+-   **Docs (Swagger):** `https://zone-mapping-back-end.onrender.com/docs`
 
--   zonas carregadas do backend
--   adição de novas zonas
--   seleção de zonas
--   visibilidade no mapa
+------------------------------------------------------------------------
+
+## 📡 Endpoints Principais da API
+
+  Método     Rota           Descrição
+  ---------- -------------- -----------------
+  `POST`     `/zones`       Criar nova zona
+  `GET`      `/zones`       Listar zonas
+  `GET`      `/zones/:id`   Buscar por ID
+  `PATCH`    `/zones/:id`   Atualizar zona
+  `DELETE`   `/zones/:id`   Excluir zona
 
 
+------------------------------------------------------------------------
+
+## 🧑‍💻 Autor
+
+**Francisco Guimarães**\
+Desenvolvedor Full Stack
+Email: (franciscop.guimaraes04@gmail.com)
