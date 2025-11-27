@@ -5,15 +5,16 @@ import "leaflet-draw/dist/leaflet.draw.css";
 import { useRef } from "react";
 import { useZonesContext } from "../../context/ZonesContext";
 
-export default function MapView({onCreateNewZone}) {
-    const { zones, visibleZones } = useZonesContext();
+export default function MapView({ onCreateNewZone }) {
+    const { zones = [], visibleZones = {}, setSelectedZone } = useZonesContext() || {};
 
     const savedLayersRef = useRef();
     const drawingLayersRef = useRef();
 
     function handleZoneCreated(geojson) {
+        console.log(geojson)
+        setSelectedZone(geojson);
         onCreateNewZone();
-        console.log("Nova zona criada:", geojson);
     }
 
     return (

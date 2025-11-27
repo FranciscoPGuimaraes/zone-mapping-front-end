@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { getZones } from "../api/zones";
+import { listZones } from "../api/zones";
 
 const ZonesContext = createContext();
 
@@ -14,13 +14,13 @@ export function ZonesProvider({ children }) {
 
     useEffect(() => {
         async function loadZones() {
-            const response = await getZones();
-            const loadedZones = response.data;
+            const response = await listZones();
+            const loadedZones = response;
 
             setZones(loadedZones);
 
             const visibility = {};
-            loadedZones.forEach(z => visibility[z.id] = true);
+            (loadedZones || []).forEach(z => visibility[z.id] = true);
             setVisibleZones(visibility);
         }
 

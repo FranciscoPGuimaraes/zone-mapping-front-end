@@ -2,30 +2,10 @@ import { useState } from 'react'
 import MapView from "./components/map/MapView";
 import SideBar from "./components/sidebar/SideBar";
 import ZoneModal from "./components/zoneModal/zoneModal";
-import { useZonesContext } from "./context/ZonesContext";
-import { createZone } from "./api/zones";
 import './App.css'
 
 function App() {
   const [open, setOpen] = useState(false);
-  const { addZone } = useZonesContext();
-
-  const handleSave = async (zoneData) => {
-    try {
-      const response = await createZone(zoneData);
-      if (!response) {
-        return;
-      }
-
-      const { data: newZone } = response;
-      addZone(newZone);
-
-      setOpen(false);
-    } catch (err) {
-      console.error("Erro ao salvar zona:", err);
-    }
-  };
-
   const newZone = () => {
     setOpen(true);
   }
@@ -45,7 +25,6 @@ function App() {
           <ZoneModal
             isOpen={open}
             onClose={() => setOpen(false)}
-            onSave={handleSave}
           />
         </div>
       </div>
