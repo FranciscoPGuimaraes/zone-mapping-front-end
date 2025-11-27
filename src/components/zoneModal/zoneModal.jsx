@@ -27,7 +27,7 @@ export default function ZoneModal({ isOpen, onClose }) {
             const res = await createZone(payload);
 
             addZone(res);
-            
+
             onClose();
         } catch (err) {
             alert("Erro ao criar zona");
@@ -52,10 +52,10 @@ export default function ZoneModal({ isOpen, onClose }) {
                 <div style={styles.formGroup}>
                     <label style={styles.label}>Tipo</label>
                     <select value={type} onChange={e => setType(e.target.value)} style={styles.select}>
-                        <option>Residencial</option>
-                        <option>Comercial</option>
-                        <option>Industrial</option>
-                        <option>Misto</option>
+                        <option style={styles.option}>Residencial</option>
+                        <option style={styles.option}>Comercial</option>
+                        <option style={styles.option}>Industrial</option>
+                        <option style={styles.option}>Misto</option>
                     </select>
                 </div>
 
