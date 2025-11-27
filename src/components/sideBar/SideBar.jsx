@@ -1,12 +1,10 @@
 import styles from "./styles";
 import { useState, useEffect } from "react";
-import { useZones } from "../../hooks/useZones";
 import { useZonesContext } from "../../context/ZonesContext";
 
 export default function SideBar() {
-    const { zones } = useZones();
+    const { zones, visibleZones, setVisibleZones, selectedZone, setSelectedZone } = useZonesContext();
     const [search, setSearch] = useState("");
-    const { visibleZones, setVisibleZones, selectedZone, setSelectedZone } = useZonesContext();
 
     useEffect(() => {
         const initialVisibility = {};
@@ -14,7 +12,7 @@ export default function SideBar() {
             initialVisibility[zone.id] = true;
         });
         setVisibleZones(initialVisibility);
-    }, [zones]);
+    }, [zones, setVisibleZones]);
 
 
     const filteredZones = zones.filter((zone) =>

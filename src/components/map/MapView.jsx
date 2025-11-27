@@ -2,13 +2,11 @@ import { MapContainer, TileLayer, FeatureGroup, GeoJSON } from "react-leaflet";
 import DrawControls from "../drawControls/drawControls"
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
-import { useZones } from "../../hooks/useZones";
 import { useRef } from "react";
 import { useZonesContext } from "../../context/ZonesContext";
 
 export default function MapView({onCreateNewZone}) {
-    const { zones } = useZones();
-    const { visibleZones } = useZonesContext();
+    const { zones, visibleZones } = useZonesContext();
 
     const savedLayersRef = useRef();
     const drawingLayersRef = useRef();
