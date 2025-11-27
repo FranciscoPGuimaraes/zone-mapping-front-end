@@ -12,7 +12,6 @@ export default function MapView({ onCreateNewZone }) {
     const drawingLayersRef = useRef();
 
     function handleZoneCreated(geojson) {
-        console.log(geojson)
         setSelectedZone(geojson);
         onCreateNewZone();
     }

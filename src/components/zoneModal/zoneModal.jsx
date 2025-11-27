@@ -27,6 +27,7 @@ export default function ZoneModal({ isOpen, onClose }) {
             const res = await createZone(payload);
 
             addZone(res);
+            
             onClose();
         } catch (err) {
             alert("Erro ao criar zona");
